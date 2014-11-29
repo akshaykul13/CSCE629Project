@@ -44,8 +44,7 @@ public class MaxCapacityPathAlgo2 {
 		System.out.println();
 	}
 
-	public static int executeDijkstra(UndirectedGraphAPI graph, int source, int destination) throws Exception {
-		// TODO Auto-generated method stub
+	public static int executeDijkstra(UndirectedGraphAPI graph, int source, int destination) throws Exception {		
 		status = new int[graph.V()];
 		capacity = new int[graph.V()];
 		dad = new int[graph.V()];
@@ -92,7 +91,7 @@ public class MaxCapacityPathAlgo2 {
 			for(Edge edge : list){
 				int w1 = edge.getOtherVertex(fringeVertex);
 				if(status[w1] == UNSEEN){
-					status[w1] = FRINGE;
+					status[w1] = FRINGE;									
 					capacity[w1] = Math.min(capacity[fringeVertex], edge.getWeight());
 					edgeList.insert(edge);
 					dad[w1] = fringeVertex;
@@ -105,7 +104,7 @@ public class MaxCapacityPathAlgo2 {
 							edgeList.delete(i);
 							break;
 						}
-					}					
+					}							
 					capacity[w1] = Math.min(capacity[fringeVertex], edge.getWeight());
 					edgeList.insert(edge);
 					dad[w1] = fringeVertex;
@@ -116,8 +115,7 @@ public class MaxCapacityPathAlgo2 {
 		return capacity[destination];
 	}
 	
-	public static int executeDijkstra(DirectedGraphAPI graph, int source, int destination) throws Exception {
-		// TODO Auto-generated method stub
+	public static int executeDijkstra(DirectedGraphAPI graph, int source, int destination) throws Exception {		
 		status = new int[graph.V()];
 		capacity = new int[graph.V()];
 		dad = new int[graph.V()];
@@ -145,7 +143,7 @@ public class MaxCapacityPathAlgo2 {
 		}
 		
 		while(!edgeList.isEmpty()){	
-			System.out.println("Heap Count: " + edgeList.getHeapCount());
+//			System.out.println("Heap Count: " + edgeList.getHeapCount());
 			Edge reqEdge = null;
 			reqEdge = edgeList.maximum();
 			int maxWeight = reqEdge.getWeight();
@@ -165,7 +163,7 @@ public class MaxCapacityPathAlgo2 {
 			for(Edge edge : list){
 				int w1 = edge.getOtherVertex(fringeVertex);
 				if(status[w1] == UNSEEN){
-					status[w1] = FRINGE;
+					status[w1] = FRINGE;					
 					capacity[w1] = Math.min(capacity[fringeVertex], edge.getWeight());
 					edgeList.insert(edge);
 					dad[w1] = fringeVertex;
@@ -174,11 +172,11 @@ public class MaxCapacityPathAlgo2 {
 						Edge edge2 = edgeList.getHeap()[i];
 						int v2 = edge2.getOneVertex();
 						int w2 = edge2.getOtherVertex(v2);
-						if((v2 == w1 && capacity[w1] == edge2.getWeight()) || (w2 == w1 && capacity[w1] == edge2.getWeight())){
+						if((v2 == w1 && capacity[w1] == edge2.getWeight())){
 							edgeList.delete(i);
 							break;
 						}
-					}					
+					}								
 					capacity[w1] = Math.min(capacity[fringeVertex], edge.getWeight());
 					edgeList.insert(edge);
 					dad[w1] = fringeVertex;

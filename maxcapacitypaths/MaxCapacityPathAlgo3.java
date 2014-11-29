@@ -25,18 +25,18 @@ public class MaxCapacityPathAlgo3 {
 		long startTime = System.currentTimeMillis();
 		negateAllEdgeWeights(undirectedGraph, -1);	
 		long negateTime = System.currentTimeMillis();
-		System.out.println("First negate time = " + (negateTime-startTime));
+//		System.out.println("First negate time = " + (negateTime-startTime));
 		sortInAscendingOrder(undirectedGraph);
 		long sortTime = System.currentTimeMillis();
-		System.out.println("Sorting time = " + (sortTime-negateTime));
+//		System.out.println("Sorting time = " + (sortTime-negateTime));
 		executeKruskalsAlgo(undirectedGraph);
 		long kruskalTime = System.currentTimeMillis();
-		System.out.println("Kruskal time = " + (kruskalTime-sortTime));
+//		System.out.println("Kruskal time = " + (kruskalTime-sortTime));
 		negateAllEdgeWeights(undirectedGraph, -1);	
 		long negateTime2 = System.currentTimeMillis();
-		System.out.println("Second negate time = " + (negateTime2-kruskalTime));
-		System.out.println();
-		System.out.println("Total time = " + (negateTime2-startTime));
+//		System.out.println("Second negate time = " + (negateTime2-kruskalTime));
+//		System.out.println();
+//		System.out.println("Total time = " + (negateTime2-startTime));
 	}
 	
 	private static void sortInAscendingOrder(UndirectedGraphAPI graph) {
@@ -102,7 +102,7 @@ public class MaxCapacityPathAlgo3 {
 			}			
 			heap.delete(1);
 		}		
-		System.out.println();
+//		System.out.println();
 	}
 
 	private static void negateAllEdgeWeights(UndirectedGraphAPI graph, int type) {
@@ -124,7 +124,7 @@ public class MaxCapacityPathAlgo3 {
 	}
 	
 	private static int find(int vertex){
-		Stack<Integer> stack = new Stack<>();
+		Stack<Integer> stack = new Stack<Integer>();
 		int h = vertex;
 		while(dad[h] != h){
 			stack.add(h);
@@ -139,7 +139,7 @@ public class MaxCapacityPathAlgo3 {
 		return h;		
 	}
 
-	public static void executeAlgorithm(DirectedGraphAPI graph) throws Exception{
+	public static void executeAlgorithm(DirectedGraphAPI graph, int source, int destination) throws Exception{
 		directedGraph = graph;
 		long startTime = System.nanoTime();
 		negateAllEdgeWeights(directedGraph, -1);	
@@ -154,7 +154,7 @@ public class MaxCapacityPathAlgo3 {
 		negateAllEdgeWeights(directedGraph, -1);	
 		long negateTime2 = System.nanoTime();
 		System.out.println("Second negate time = " + (negateTime2-kruskalTime));
-		System.out.println();
+//		System.out.println();
 		System.out.println("Total time = " + (negateTime2-startTime));
 	}
 	
@@ -166,6 +166,7 @@ public class MaxCapacityPathAlgo3 {
 		int edgesToBeAdded = graph.V()-1;
 //		for(int i=0; i<graph.V(); i++){
 		while(heap.getHeapCount() != 0 || edgesToBeAdded != 0){
+			System.out.println("edges to be added: " + edgesToBeAdded);
 			Edge edge = heap.minimum();			
 			int v = edge.getOneVertex();
 			int r1 = find(v);
@@ -205,7 +206,7 @@ public class MaxCapacityPathAlgo3 {
 			}			
 			heap.delete(1);
 		}		
-		System.out.println();
+//		System.out.println();
 	}
 
 	private static void sortInAscendingOrder(DirectedGraphAPI graph) {		

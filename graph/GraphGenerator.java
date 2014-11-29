@@ -3,6 +3,7 @@ package graph;
 import java.util.ArrayList;
 import java.util.Random;
 
+
 public class GraphGenerator {
 
 	private static int NUMBER_OF_VERTICES = 5000;
@@ -12,11 +13,11 @@ public class GraphGenerator {
 		UndirectedGraphAPI graph = new UndirectedGraphAPI(numberOfVertices);
 		Random randomGenerator = new Random();
 		for(int i=0; i<numberOfVertices; i++){
-//			System.out.println("Vertex: " + i);
-//			System.out.println("Degree left: " + (UNDIRECTED_GRAPH_DEGREE-UndirectedGraphAPI.degree(graph, i)));
+//			System.out.println("Vertex: " + i );
+//			System.out.println("Degree left: " + (UNDIRECTED_GRAPH_DEGREE-UndirectedGraphAPI.degree(graph, i)) );
 			int degreeRemaining = UNDIRECTED_GRAPH_DEGREE-UndirectedGraphAPI.degree(graph, i);
 			for(int j=0; j<degreeRemaining; j++){
-				int count = 0, temp = 0;
+				int count = 0;
 				boolean flag = false;
 				while(true){	
 					count++;
@@ -31,7 +32,7 @@ public class GraphGenerator {
 							}
 						}
 					}
-//					System.out.println("Vertex generated: " + vertex);
+//					System.out.println("Vertex generated: " + vertex );
 					if(vertex == -1){
 						flag = true;
 						break;						
@@ -40,7 +41,7 @@ public class GraphGenerator {
 						if(!(containsEdgeTo(i, vertex, graph.getAdj()[i])) && i != vertex){
 							int weight = randomGenerator.nextInt(1000) + 1;
 							graph.addEdge(i, vertex, weight);
-//							System.out.println("Added edge from " + i + " to " + vertex + " of weight " + weight);
+//							System.out.println("Added edge from " + i + " to " + vertex + " of weight " + weight );
 							break;
 						}	
 					}								
@@ -68,19 +69,20 @@ public class GraphGenerator {
 		DirectedGraphAPI graph = new DirectedGraphAPI(numberOfVertices);
 		Random randomGenerator = new Random();
 		for(int i=0; i<numberOfVertices; i++){
-			System.out.println("Vertex: " + i);
+//			System.out.println("Vertex: " + i );
 			for(int j=0; j<1000; j++){
 				while(true){
 					int vertex = randomGenerator.nextInt(numberOfVertices);
 					if(!(graph.getAdj()[i].contains(vertex)) && i != vertex){
 						int weight = randomGenerator.nextInt(1000) + 1;
 						graph.addEdge(i, vertex, weight);
-						System.out.println("Added edge from " + i + " to " + vertex + " of weight " + weight);
+//						System.out.println("Added edge from " + i + " to " + vertex + " of weight " + weight );
 						break;
 					}	
 				}				
 			}
 		}
+		System.out.println("INFO: Generated Directed Dense Graph");
 		return graph;
 	}
 		
